@@ -59,7 +59,7 @@ const Approach = () => {
                   width={1000}
                   height={1000}
                   alt=""
-                  className="h-full w-full object-cover z-[0] "
+                  className="h-full w-full object-fill z-[0] origin-center"
                 />
               </div>
 
@@ -69,7 +69,7 @@ const Approach = () => {
                   width={1000}
                   height={1000}
                   alt=""
-                  className="h-full w-full object-cover z-[1] scale-0"
+                  className="h-full w-full object-cover z-[1] scale-0 origin-center"
                 />
               </div>
 
@@ -79,7 +79,7 @@ const Approach = () => {
                   width={1000}
                   height={1000}
                   alt=""
-                  className="h-full w-full object-cover z-[2]"
+                  className="h-full w-full object-cover z-[2] origin-center"
                 />
               </div>
             </div>
