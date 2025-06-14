@@ -1,7 +1,32 @@
-import React from "react";
+'use client';
+import React, { useEffect } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import SplitText from "gsap/dist/SplitText";
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const Approach = () => {
+
+
+  useEffect (() => {
+      const ctx= gsap.context(() => {
+          gsap.to(".approach-img", {
+            scale: 1,
+            duration:0.7,
+            stagger:0.2,
+            scrollTrigger: {
+              trigger: ".approach-container",
+              scrub: true,
+              start: "20% 80%",
+              end: "bottom top",
+              markers: false,
+            }
+          })
+      });
+      return () => ctx.revert();
+  }, []);
+
   return (
     <section
       id="approach"
@@ -52,7 +77,7 @@ const Approach = () => {
 
         <div className="w-full h-fit flex px-[2vw] justify-end ">
           <div className="w-[50%] border-none">
-            <div className="w-full h-[90vh] overflow-hidden relative">
+            <div className="w-full h-[90vh] overflow-hidden relative approach-container">
               <div className="w-full h-full overflow-hidden absolute inset-0">
                 <Image
                   src="/assets/images/approach/1.png"
@@ -69,17 +94,17 @@ const Approach = () => {
                   width={1000}
                   height={1000}
                   alt=""
-                  className="h-full w-full object-cover z-[1] scale-0 origin-center"
+                  className="h-full w-full object-cover z-[1] scale-0 origin-center approach-img"
                 />
               </div>
 
-              <div className="w-full h-full overflow-hidden  absolute inset-0 scale-0">
+              <div className="w-full h-full overflow-hidden  absolute inset-0">
                 <Image
                   src="/assets/images/approach/3.png"
                   width={1000}
                   height={1000}
                   alt=""
-                  className="h-full w-full object-cover z-[2] origin-center"
+                  className="h-full w-full object-cover z-[2] origin-center approach-img scale-0"
                 />
               </div>
             </div>

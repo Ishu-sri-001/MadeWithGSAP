@@ -10,9 +10,7 @@ import SplitText from 'gsap/dist/SplitText';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 
-
 const About = () => {
-
 
     useEffect(() => {
         const ctx= gsap.context(() => {
