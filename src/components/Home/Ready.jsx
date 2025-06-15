@@ -1,9 +1,21 @@
+'use client';
+
 import React from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import Button from "@/components/Buttons/index";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const Ready = () => {
   
+  useEffect( () => {
+    const ctx=gsap.context(()  => {
+
+    });
+    return () => ctx.revert()
+  }, []);
 
   return (
     <section className="dark-bg text-white h-full w-full" id='ready'>
