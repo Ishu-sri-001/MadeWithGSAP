@@ -12,6 +12,37 @@ const Ready = () => {
   
   useEffect( () => {
     const ctx=gsap.context(()  => {
+        const blocks = document.querySelectorAll(".ready-animated-blocks");
+      // console.log(blocks);
+      const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".ready-block-container",
+        scrub: true,
+        start: "top bottom",
+        end: "60% 80%",
+        markers: false,
+      },
+    });
+    const len = blocks.length;
+    const mid = Math.floor(len / 2);
+
+    for (let i = 0; i <= mid; i++) {
+      const left = blocks[i];
+      const right = blocks[len - 1 - i];
+
+      const targets = left === right ? [left] : [left, right];
+
+      timeline.from(
+        targets,
+        {
+          yPercent: 47,
+          ease: "elastic.out(1, 1)",
+          duration: 1,
+        },
+        i  
+      );
+    }
+
         gsap.fromTo(".text-scroll", {
           yPercent: -50,
         } , {
@@ -41,7 +72,7 @@ const Ready = () => {
   }, []);
 
   return (
-    <section className="dark-bg text-white h-full w-fit" id='ready'>
+    <section className="dark-bg text-white h-full w-fit ready-block-container" id='ready'>
       <div className="relative h-screen w-full">
                 <div className="w-full h-full flex flex-col items-center py-[9vw] gap-[2vw]">
             <p className='text-[0.9vw] pb-[3vw]'>EAGER TO LEARN GSAP ?</p>
@@ -63,7 +94,7 @@ const Ready = () => {
            <div className="h-fit flex ">
 
           
-          <h2 className="text-[6.5vw] font-display px-[1vw] text-center leading-[1] text-nowrap">
+          <h2 className="text-[6.5vw] font-display px-[1vw] text-center leading-[1] text-nowrap z-[1]">
             Get ready to animate
           </h2>
 
@@ -118,7 +149,7 @@ const Ready = () => {
 
           
         </div>
-        <div className='dark-bg w-full flex justify-center py-[3vw]'>
+        <div className='dark-bg w-full flex justify-center py-[3vw] z-[0]'>
         <div className='h-full px-[3vw] bg-white'>
 
                     <Button isArrow={false} title='Start learning now' bg='bg-white' />
@@ -127,7 +158,7 @@ const Ready = () => {
             </div>
 
         
-        <div className="absolute top-[-10%] left-0 right-[-20%] h-[20vh] w-full flex overflow-hidden">
+        <div className="absolute top-[-8%] left-0 right-[-20%] h-[22vh] w-full flex ">
           {Array.from({ length: 13 }).map((_, index, arr) => {
             const isFirst = index === 0;
             const isLast = index === arr.length - 1;
@@ -135,7 +166,7 @@ const Ready = () => {
             return (
               <div
                 key={index}
-                className={`dark-bg h-full ${
+                className={`dark-bg ready-animated-blocks h-[80%] origin-bottom ${
                   isFirst || isLast ? "w-[4.15vw]" : "w-[8.3vw]"
                 } ${
                   isFirst

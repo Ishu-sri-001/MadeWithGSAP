@@ -6,7 +6,7 @@ const LinkBtn = () => {
   return (
     <div className='w-[40vw] h-[12vh] cursor-pointer group relative overflow-hidden'>
 
-    <div className='flex flex-col translate-y-[-50%] group-hover:translate-y-[0] duration-500 transition-all'>
+    <div className='flex flex-col translate-y-[-50%] group-hover:translate-y-[0] duration-300 transition-all'>
       <div className='flex items-center justify-between  '>
 
         <div className='w-[3vw] h-[5vh]'>

@@ -1,7 +1,14 @@
-import React from "react";
+'use client';
+
+import React, {useEffect} from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger)
+
 
 const Cards = () => {
+
   const cardData = [
     {
       title: "Beginners friendly",
@@ -23,18 +30,70 @@ const Cards = () => {
     },
   ];
 
+  useEffect(() => {
+    const ctx= gsap.context(() => {
+      const blocks = document.querySelectorAll(".cards-animated-blocks");
+      // console.log(blocks);
+      const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".cards-container",
+        scrub: true,
+        start: "top bottom",
+        end: "30% 80%",
+        markers: false,
+      },
+    });
+
+    const len = blocks.length;
+    const mid = Math.floor(len / 2);
+
+    for (let i = 0; i <= mid; i++) {
+      const left = blocks[i];
+      const right = blocks[len - 1 - i];
+
+      const targets = left === right ? [left] : [left, right];
+
+      timeline.from(
+        targets,
+        {
+          yPercent: 100,
+          ease: "elastic.out(1, 1)",
+          duration: 1,
+        },
+        i  
+      );
+    }
+  });
+    //     gsap.from(".cards-animated-blocks", {
+    //         yPercent: 100,
+    //         stagger: 1,
+    //         ease: 'elastic.out(1,1)',
+    //         duration:1,
+    //         scrollTrigger: {
+    //           trigger: ".cards-container",
+    //           scrub: true,
+    //           start: "top bottom",
+    //           end: "50% 80%",
+    //           markers: true
+    //         }
+    //     })
+    // })
+     return () => ctx.revert();
+
+}, []);
+
   return (
-    <section className="dark-bg text-white h-full w-full" id="cards">
+    <section className="dark-bg text-white h-full w-full cards-container" id="cards">
       <div className="relative h-screen w-full">
         <div className="w-full h-full flex items-center justify-center">
-          <h2 className="text-[7vw] font-display  text-center leading-[1]">
+          <h2 className="text-[7vw] font-display text-center leading-[1]">
             Learn how to use{" "}
             <span className="block"> the coolest JS library </span>
           </h2>
         </div>
 
         
-        <div className="absolute top-[-10%] left-0 right-[-20%] h-[20vh] w-full flex overflow-hidden">
+        <div className="absolute top-[-8%] left-0 right-[-20%] h-[22vh] w-full flex  ">
           {Array.from({ length: 13 }).map((_, index, arr) => {
             const isFirst = index === 0;
             const isLast = index === arr.length - 1;
@@ -42,7 +101,7 @@ const Cards = () => {
             return (
               <div
                 key={index}
-                className={`dark-bg h-full ${
+                className={`dark-bg cards-animated-blocks h-[80%] origin-bottom  ${
                   isFirst || isLast ? "w-[4.15vw]" : "w-[8.3vw]"
                 } ${
                   isFirst
