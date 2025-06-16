@@ -15,18 +15,21 @@ const Cards = () => {
       description:
         "Jump right in! Our resources cater to all skill levels, ensuring a smooth learning curve for newcomers.",
       icon: "/assets/icons/cards/card1.svg",
+      rotate: "-rotate-12",
     },
     {
       title: "Easy to implement",
       description:
         "Get started effortlessly with our code snippets and integrate them into your project in no time.",
       icon: "/assets/icons/cards/card2.svg",
+      rotate: "-rotate-12",
     },
     {
       title: "Performance optimized",
       description:
         "Our effects are built with efficiency in mind: combining performance with creativity.",
       icon: "/assets/icons/cards/card3.svg",
+      rotate: "rotate-12",
     },
   ];
 
@@ -64,20 +67,40 @@ const Cards = () => {
       );
     }
   });
-    //     gsap.from(".cards-animated-blocks", {
-    //         yPercent: 100,
-    //         stagger: 1,
-    //         ease: 'elastic.out(1,1)',
-    //         duration:1,
-    //         scrollTrigger: {
-    //           trigger: ".cards-container",
-    //           scrub: true,
-    //           start: "top bottom",
-    //           end: "50% 80%",
-    //           markers: true
-    //         }
-    //     })
-    // })
+  const tl = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".cards-animated-container",
+        scrub: true,
+        pin: true,
+        start: "50% 70%",
+        end: "bottom -50%",
+        markers: true
+      }
+  });
+    tl.from(".cards-animation", {
+      yPercent: 30,  
+      rotate:5,
+      // opacity:1,
+      stagger:0.5,
+      //duration: 10,
+      //ease: "elastic.in(1.2,0.1)",
+          
+      
+    })
+    .to (".cards-animation", {
+         yPercent: 10,
+        stagger:0.5,  
+        duration: 2
+    })
+    .to (".cards-animation", {
+         yPercent: -90,
+        rotate: 0,
+        stagger: 0.5,
+        duration: 5
+        // opacity: 0,
+        // duration:1,
+        
+    })
      return () => ctx.revert();
 
 }, []);
@@ -118,11 +141,12 @@ const Cards = () => {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-[1.3vw] justify-center items-center px-[10vw] pb-[10vw]">
+      <div className="flex flex-col md:flex-row gap-[1.3vw] justify-center items-center px-[10vw] pb-[10vw] cards-animated-container ">
         {cardData.map((card, index) => (
+          
           <div
             key={index}
-            className="bg-[#0d0d0d] text-white rounded-[0.7vw] py-[1.3vw] pb-[2.5vw] px-[1.7vw] w-full  transform hover:-rotate-2 transition duration-300 min-h-[67vh] cursor-pointer flex flex-col gap-[6vw] h-full"
+            className={`bg-[#0d0d0d] text-white border border-neutral-800 rounded-[0.7vw] py-[1.3vw] pb-[2.5vw] px-[1.7vw] w-full  min-h-[67vh] cursor-pointer flex flex-col gap-[6vw] h-full cards-animation  `}
           >
             <div className="h-[40%] w-fit py-[2vw]">
               <Image
