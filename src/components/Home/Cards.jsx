@@ -4,7 +4,8 @@ import React, {useEffect} from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger)
+import SplitText from "gsap/dist/SplitText";
+gsap.registerPlugin(ScrollTrigger, SplitText)
 
 
 const Cards = () => {
@@ -15,26 +16,56 @@ const Cards = () => {
       description:
         "Jump right in! Our resources cater to all skill levels, ensuring a smooth learning curve for newcomers.",
       icon: "/assets/icons/cards/card1.svg",
-      rotate: "-rotate-12",
+      rotate: "",
     },
     {
       title: "Easy to implement",
       description:
         "Get started effortlessly with our code snippets and integrate them into your project in no time.",
       icon: "/assets/icons/cards/card2.svg",
-      rotate: "-rotate-12",
+      rotate: "",
     },
     {
       title: "Performance optimized",
       description:
         "Our effects are built with efficiency in mind: combining performance with creativity.",
       icon: "/assets/icons/cards/card3.svg",
-      rotate: "rotate-12",
+      rotate: "",
     },
   ];
 
   useEffect(() => {
     const ctx= gsap.context(() => {
+      const splitText = new SplitText(".cards-animated-txt", {
+              type: "chars",
+              linesClass: "lines",
+              mask: "lines",
+          });
+          const chars = splitText.chars;
+          const shuffled = gsap.utils.shuffle([...chars]);
+          gsap.fromTo(
+        shuffled,
+        {
+          // y: () => gsap.utils.random(100, 100), 
+          y: 100,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          ease: 'power3.out',
+          stagger: {
+            each: 0.03,
+            from: 'random',
+          },
+          scrollTrigger: {
+            trigger: '.card-text-container',
+            scrub: true,
+            start: '20% 80%',
+            end: 'center center',
+            markers: false, 
+          },
+        },
+      );
       const blocks = document.querySelectorAll(".cards-animated-blocks");
       // console.log(blocks);
       const timeline = gsap.timeline({
@@ -74,29 +105,34 @@ const Cards = () => {
         pin: true,
         start: "50% 70%",
         end: "bottom -50%",
-        markers: true
+        markers: false
       }
   });
-    tl.from(".cards-animation", {
+    tl.fromTo(".cards-animation", {
       yPercent: 30,  
-      rotate:5,
-      // opacity:1,
+      scrub:true,
+        // opacity:1,
       stagger:0.5,
       //duration: 10,
-      //ease: "elastic.in(1.2,0.1)",
-          
-      
+      //ease: "elastic.in(1.2,0.1)",   
+    }, {
+      yPercent:0,
+      rotation: () => gsap.utils.random(-30, 30),
+      scrub:true,
     })
     .to (".cards-animation", {
          yPercent: 10,
+         
         stagger:0.5,  
+        scrub:true,
         duration: 2
     })
     .to (".cards-animation", {
          yPercent: -90,
         rotate: 0,
         stagger: 0.5,
-        duration: 5
+        duration: 5,
+        scrub: true
         // opacity: 0,
         // duration:1,
         
@@ -108,10 +144,13 @@ const Cards = () => {
   return (
     <section className="dark-bg text-white h-full w-full cards-container" id="cards">
       <div className="relative h-screen w-full">
-        <div className="w-full h-full flex items-center justify-center">
-          <h2 className="text-[7vw] font-display text-center leading-[1]">
+        <div className="w-full h-full flex items-center justify-center card-text-container">
+          <h2 className="text-[7vw] font-display text-center leading-[1] cards-animated-txt">
+            <span className="block w-full overflow-hidden">
+
             Learn how to use{" "}
-            <span className="block"> the coolest JS library </span>
+            </span>
+            <span className="block w-full  overflow-hidden"> the coolest JS library </span>
           </h2>
         </div>
 
