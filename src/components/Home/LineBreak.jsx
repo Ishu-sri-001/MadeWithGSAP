@@ -9,6 +9,7 @@ const LineBreak = () => {
 
   useEffect( () => {
     const ctx=gsap.context(()  => {
+        
         gsap.fromTo(".linebreak-txt", {
               xPercent: 100,
         }, {

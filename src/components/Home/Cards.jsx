@@ -46,7 +46,6 @@ const Cards = () => {
           gsap.fromTo(
         shuffled,
         {
-          // y: () => gsap.utils.random(100, 100), 
           y: 100,
         },
         {

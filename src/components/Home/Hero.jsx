@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className="w-full h-[90vh] text-neutral-900" id='hero'>
+    <section className="w-fit  h-[90vh] text-neutral-900" id='hero'>
       <div className="flex items-end justify-end gap-[2vw]  h-full px-[2vw]">
         <div className="w-[63%] font-display">
 

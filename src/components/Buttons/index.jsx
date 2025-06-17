@@ -47,7 +47,7 @@ const Button = (props) => {
   };
 
   return (
-    <div
+    <button
       className={`h-[3.2vw] flex items-center justify-between w-fit my-auto px-[1vw] gap-[0.5vw] cursor-pointer ${props.isBorder ? 'border border-black' : ''} ${props.bg}`}
       onMouseEnter={handleHover}
     >
@@ -69,7 +69,7 @@ const Button = (props) => {
       >
         {props.title}
       </p>
-    </div>
+    </button>
   );
 };
 
