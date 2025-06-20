@@ -13,12 +13,16 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 const About = () => {
 
     useEffect(() => {
+
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
         const ctx= gsap.context(() => {
             const splitText = new SplitText(".about-text", {
                     type: "chars,lines",
                     linesClass: "lines",
                     mask: "lines",
                 });
+            if(!isMobile) {
             gsap.to(".scaled-video", {
                 scale: 0.3,
                 duration: 3,
@@ -30,7 +34,8 @@ const About = () => {
                     end: "bottom 20%",
                     markers: false,    
                 }
-            }),
+            })
+        }
             gsap.from(splitText.lines,{      
                 yPercent: 100,
                 duration: 0.5,
@@ -49,7 +54,7 @@ const About = () => {
 
 
   return (
-    <section id='about' className='pb-[30vh] px-[2vw]'>
+    <section id='about' className='pb-[30vh] max-md:pb-[10vh] px-[2vw]'>
         <div className='scaled-video origin-left'>
             <video
             autoPlay
@@ -62,16 +67,16 @@ const About = () => {
       </video>
 
         </div>
-        <div className='text-primary font-display pt-[10vw]'>
-            <div className='w-full h-full flex flex-col justify-end items-end '>
+        <div className='text-primary font-display pt-[10vw] max-md:pt-[6vw]'>
+            <div className='w-full h-full flex flex-col justify-end items-end max-md:justify-start max-md:items-start'>
 
-            <p className='text-[1.5vw] w-[67%]  pb-[8vw] '>Improve your animation skills</p>
-            <p className='text-[4.5vw] w-[67%] leading-[1] about-text about-hit-point'>
+            <p className='text-[1.5vw] max-md:text-[4.5vw] w-[67%]  pb-[8vw] '>Improve your animation skills</p>
+            <p className='text-[4.5vw] max-md:text-[7vw] w-[67%] max-md:w-full leading-[1] about-text about-hit-point'>
                 Motion on websites is a must-
             </p>
             </div>
-            <p className='text-[4.5vw] leading-[1] about-text '>have these days. Developers are constantly crafting new animations that push the boundaries of creativity. If you're ready to explore the power of GSAP, we’ve got you covered with 50 unique effects designed to help you master it like a pro.</p>
-            <div className='w-full h-fit pt-[15vh] flex items-center justify-center'>
+            <p className='text-[4.5vw] max-md:text-[7vw] leading-[1] about-text '>have these days. Developers are constantly crafting new animations that push the boundaries of creativity. If you're ready to explore the power of GSAP, we’ve got you covered with 50 unique effects designed to help you master it like a pro.</p>
+            <div className='w-full h-fit pt-[5vh] flex items-center justify-center'>
                 <LinkBtn />
             </div>
         </div>

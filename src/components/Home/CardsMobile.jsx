@@ -8,7 +8,7 @@ import SplitText from "gsap/dist/SplitText";
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
 
-const Cards = () => {
+const CardsMobile = () => {
   const cardData = [
     {
       title: "Beginners friendly",
@@ -42,16 +42,7 @@ const Cards = () => {
           });
           const chars = splitText.chars;
           const shuffled = gsap.utils.shuffle([...chars]);
-          gsap.to(".cards-container",{
-            scrollTrigger: {
-        trigger: ".cards-container",
-        scrub: true,
-        pin: true,
-         start: '50% top',
-        end: '+1500 bottom',
-        markers: false
-      }
-          })
+          
           gsap.fromTo(
         shuffled,
         {
@@ -106,65 +97,7 @@ const Cards = () => {
       );
     }
   });
-  const tl = gsap.timeline({
-    delay:0.5,
-    scrollTrigger: {
-        trigger: ".cards-animated-container",
-        scrub: true,
-        
-         start: '30% 70%',
-        end: 'bottom top',
-        markers: false
-      }
-  });
-    tl.fromTo(".cards-animation", {
-      yPercent: 150,  
-      scrub:true,
-      
-      
-    
-      ease: "sine.out",   
-    }, {
-      yPercent:0,
-      rotation: () => gsap.utils.random(-15, 15),
-      stagger:0.7,
-      scrub:true,
-      duration:3,
-    })
-    .to (".cards-animation", {
-        yPercent: 30,
-        stagger:0.7,  
-        scrub:true,
-        duration: 3
-    })
-    .to (".cards-animation", {
-         yPercent: -180,
-        rotate: 0,
-        stagger: 0.8,
-        duration: 5,
-        scrub: true
-        // opacity: 0,
-        // duration:1,
-    });
-
-    ScrollTrigger.create({
-      trigger: "#cards",
-      start: "top 50%",
-      end: "bottom 50%",
-      onEnter: () => {
-        document.querySelectorAll('.nav-links').forEach(el => el.classList.add('text-white'));
-      },
-      onLeave: () => {
-        document.querySelectorAll('.nav-links').forEach(el => el.classList.remove('text-white'));
-      },
-      onEnterBack: () => {
-        document.querySelectorAll('.nav-links').forEach(el => el.classList.add('text-white'));
-      },
-      onLeaveBack: () => {
-        document.querySelectorAll('.nav-links').forEach(el => el.classList.remove('text-white'));
-      },
-    });
-
+  
     
      return () => ctx.revert();
 
@@ -175,35 +108,27 @@ const Cards = () => {
 
     
     <section className="dark-bg text-white h-fit w-full cards-container" id="cards">
-      <div className="relative h-screen dark-bg pb-[20vh] w-full">
-        <div className="w-full h-full flex items-center justify-center card-text-container">
-          <h2 className="text-[7vw] font-display text-center leading-[1] cards-animated-txt">
+      <div className="relative h-fit dark-bg w-full">
+        <div className="w-full h-full flex items-center justify-center card-text-container py-[20vw] z-[2]">
+          <h2 className="text-[10vw] font-display text-center leading-[1] cards-animated-txt">
             <span className="block w-full overflow-hidden">
 
             Learn how to use{" "}
             </span>
-            <span className="block w-full  overflow-hidden"> the coolest JS library </span>
+            <span className="block w-full  overflow-hidden"> the coolest JS  </span>
+            <span className="block w-full  overflow-hidden">library</span>
           </h2>
         </div>
 
         
-        <div className="absolute top-[-8%] left-0 right-[-20%] h-[22vh] w-full flex  ">
-          {Array.from({ length: 13 }).map((_, index, arr) => {
-            const isFirst = index === 0;
-            const isLast = index === arr.length - 1;
+        <div className="absolute top-[-10%] left-0 right-[-20%] h-[13vh] w-full flex  ">
+          {Array.from({ length: 7 }).map((_, index, arr) => {
+            
 
             return (
               <div
                 key={index}
-                className={`dark-bg cards-animated-blocks h-[80%] origin-bottom  ${
-                  isFirst || isLast ? "w-[4.15vw]" : "w-[8.3vw]"
-                } ${
-                  isFirst
-                    ? "rounded-r-full"
-                    : isLast
-                    ? "rounded-l-full"
-                    : "rounded-full"
-                }`}
+                className={`dark-bg cards-animated-blocks h-[80%] origin-bottom w-[20vw] rounded-full`}
               >
                 <div className="h-full" />
               </div>
@@ -212,13 +137,14 @@ const Cards = () => {
         </div>
       </div>
 
-      <div className="flex w-fit h-screen  gap-[1.3vw] justify-center items-center px-[10vw] cards-animated-container moving-container dark-bg ">
+          <div className="w-[95vw] overflow-x-scroll ">
+      <div className="flex w-[200vw] h-fit  gap-[5vw] pl-[5vw] cards-animated-container moving-container dark-bg ">
         {cardData.map((card, index) => (
           <div
             key={index}
-            className={`bg-[#0d0d0d] text-white border border-neutral-800 rounded-[0.7vw] py-[1.5vw] pb-[2.5vw] px-[1.7vw] w-full   cursor-pointer flex flex-col gap-[3vw] h-fit cards-animation  `}
+            className={`bg-[#0d0d0d] text-white border border-neutral-800 rounded-[4vw] py-[1.5vw] pb-[2.5vw] px-[1.7vw] w-full  cursor-pointer flex flex-col justify-between h-[35vh] cards-animation  `}
           >
-            <div className="h-[40%] w-fit py-[2vw]">
+            <div className="h-[18vw] w-fit px-[2vw] py-[4vw]">
               <Image
                 src={card.icon}
                 alt={card.title}
@@ -227,19 +153,20 @@ const Cards = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="flex flex-col justify-around h-[60%] gap-[1vw]">
-              <h3 className="text-[3vw] leading-[1] font-medium w-[50%] mb-[0.5vw] h-full">
+            <div className="flex flex-col justify-end h-[60%] gap-[1vw]">
+              <h3 className="text-[7vw] leading-[1] font-medium w-[50%] mb-[0.5vw] h-full">
                 {card.title}
               </h3>
-              <p className="text-[1.3vw] leading-[1.3] opacity-80 h-full">
+              <p className="text-[4vw] leading-[1.3] opacity-80 ">
                 {card.description}
               </p>
             </div>
           </div>
         ))}
       </div>
+      </div>
     </section>
   );
 };
 
-export default Cards;
+export default CardsMobile;
