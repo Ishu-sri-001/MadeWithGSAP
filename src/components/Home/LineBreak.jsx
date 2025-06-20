@@ -41,7 +41,7 @@ const LineBreak = () => {
       const chars = split.chars;
 
       t1.set(chars, {
-        xPercent: 300,
+        xPercent: 100,
         yPercent: (i) => (i % 2 === 0 ? -100 : 100),
       });
        t1.to('.line-animation',{

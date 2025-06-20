@@ -68,11 +68,30 @@ const Ready = () => {
           ease: "none"
         })
     });
+
+    ScrollTrigger.create({
+      trigger: "#ready",
+      start: "top 50%",
+      end: "bottom 50%",
+      onEnter: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.add('text-white'));
+      },
+      onLeave: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.remove('text-white'));
+      },
+      onEnterBack: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.add('text-white'));
+      },
+      onLeaveBack: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.remove('text-white'));
+      },
+    });
+
     return () => ctx.revert()
   }, []);
 
   return (
-    <section className="dark-bg text-white h-full w-fit ready-block-container" id='ready'>
+    <section className="dark-bg text-white h-full w-full ready-block-container" id='ready'>
       <div className="relative h-screen w-full">
                 <div className="w-full h-full flex flex-col items-center py-[9vw] gap-[2vw]">
             <p className='text-[0.9vw] pb-[3vw]'>EAGER TO LEARN GSAP ?</p>
@@ -150,9 +169,9 @@ const Ready = () => {
           
         </div>
         <div className='dark-bg w-full flex justify-center py-[3vw] z-[0]'>
-        <div className='h-full px-[3vw] bg-white'>
+        <div className='h-full  '>
 
-                    <Button isArrow={false} title='Start learning now' bg='bg-white' />
+                    <Button isArrow={false} title='Start learning now' bg='bg-white px-[3vw]' />
                     </div>
         </div>
             </div>

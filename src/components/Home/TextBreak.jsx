@@ -91,6 +91,25 @@ const Textreak = () => {
         stagger: 0.1
       });
     });
+
+    ScrollTrigger.create({
+      trigger: "#text-break",
+      start: "top 50%",
+      end: "bottom 50%",
+      onEnter: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.add('text-white'));
+      },
+      onLeave: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.remove('text-white'));
+      },
+      onEnterBack: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.add('text-white'));
+      },
+      onLeaveBack: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.remove('text-white'));
+      },
+    });
+
     
     return () => ctx.revert();
   }, []);
@@ -121,7 +140,7 @@ const Textreak = () => {
   );
 
   return (
-    <section className=' text-white h-fit dark-bg w-full flex items-center justify-center  pb-[20vw] textbreak-container'>
+    <section id='text-break' className=' text-white h-fit dark-bg w-full flex items-center justify-center  pb-[20vw] textbreak-container'>
       <div className='w-full  flex flex-col items-center justify-center h-fit text-center'>
         {/* First row: "Learn it" */}
         <TextRow letters={row1Letters} isFirstRow={true} startIndex={0} />

@@ -47,22 +47,15 @@ const Header = () => {
   </div>
 </div>
 
-            {/* <div className='flex justify-between gap-[2.5vw] pl-[11vw] font-display group'>
-                
-                {navItems.map((links) => (
-                    <Link key={links.id} className='font-heading font-medium text-[1.3vw] link text-black' href={links.link}>{links.name} </Link>
-                ))}
-
-               
-            </div> */}
+           
 
             <div className='flex justify-between gap-[2.5vw] pl-[11vw] font-display'>
   {navItems.map((link) => (
     <div key={link.id} className='overflow-hidden h-[2vw] group relative'>
-      <Link href={link.link} className='block font-heading font-medium text-[1.3vw] text-black transition-all duration-300  group-hover:translate-y-[100%]'>
+      <Link href={link.link} className='block font-heading font-medium text-[1.3vw] text-black nav-links transition-all duration-300  group-hover:translate-y-[100%]'>
         {link.name}
       </Link>
-      <Link href={link.link} className='block font-heading font-medium text-[1.3vw] text-black transition-all duration-300  absolute top-0 left-0 group-hover:translate-y-[0%] translate-y-[-100%]'>
+      <Link href={link.link} className='block font-heading font-medium text-[1.3vw] text-black transition-all duration-300  absolute top-0 left-0 group-hover:translate-y-[0%] nav-links translate-y-[-100%]'>
         {link.name}
       </Link>
     </div>
@@ -71,16 +64,15 @@ const Header = () => {
 
 
             <div className='flex justify-between gap-[2vw]'>
-                <div className='text-black'>
+                <div className='text-black nav-links'>
                     <Button title='Sign In'/>
                 </div>
-                <div className='text-black'>
+                <div className='text-black '>
                     <Button title='Start Learning Now' isArrow={true} isBorder={false} bg='bg-[#C9FE6E]'/>
                 </div>
             </div>
 
         </div>
-    
   )
 }
 

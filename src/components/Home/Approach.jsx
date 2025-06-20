@@ -24,6 +24,25 @@ const Approach = () => {
             }
           })
       });
+
+      ScrollTrigger.create({
+      trigger: "#approach",
+      start: "top 50%",
+      end: "bottom 50%",
+      onEnter: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.add('text-white'));
+      },
+      onLeave: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.remove('text-white'));
+      },
+      onEnterBack: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.add('text-white'));
+      },
+      onLeaveBack: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.remove('text-white'));
+      },
+    });
+
       return () => ctx.revert();
   }, []);
 

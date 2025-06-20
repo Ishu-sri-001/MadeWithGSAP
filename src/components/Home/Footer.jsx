@@ -1,7 +1,39 @@
-import React from 'react'
+'use client';
+
+import React, {useEffect} from 'react'
 import Image from 'next/image'
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger)
+
+
 
 const Footer = () => {
+
+  useEffect(() => {
+    const ctx=gsap.context(() => {
+      ScrollTrigger.create({
+      trigger: "#footer",
+      start: "top 50%",
+      end: "bottom 50%",
+      onEnter: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.add('text-white'));
+      },
+      onLeave: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.remove('text-white'));
+      },
+      onEnterBack: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.add('text-white'));
+      },
+      onLeaveBack: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.remove('text-white'));
+      },
+    });
+
+    });
+    return () => ctx.revert()
+  }, []);
+
   return (
     <footer className="dark-bg text-white h-fit px-[2vw] w-full" id='footer'>
       <div className='flex justify-between text-white pb-[10%]'>

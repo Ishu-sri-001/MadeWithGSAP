@@ -61,7 +61,7 @@ const Hero = () => {
   const LetterColumn = ({ letterArray, extraClasses = "", globalIndex }) => (
     <div className={`w-fit flex flex-col items-center justify-center translate-y-[-50%] timer  leading-[1.2] tracking-[-0.4vw] timer-${globalIndex} ${extraClasses}`}>
       {letterArray.map((digit, idx) => (
-        <p key={idx} className="font-display leading-[0.9] text-[7.9vw] translate-y-[-5%]" style={{ minWidth: digit === " " ? "0.3em" : "auto" }}>
+        <p key={idx} className="font-display leading-[0.9] text-[7.9vw] max-md:text-[11vw]  translate-y-[-5%]" style={{ minWidth: digit === " " ? "0.3em" : "auto" }}>
           {digit === " " ? "\u00A0" : digit}
         </p>
       ))}
@@ -70,7 +70,7 @@ const Hero = () => {
 
   
   const TextRow = ({ letters, isFirstRow = false, startIndex = 0 }) => (
-    <div className="h-[7.5vw] overflow-hidden w-fit flex pr-[0.5vw] ">
+    <div className="h-[7.5vw] max-md:h-[10.5vw] overflow-hidden w-fit flex pr-[0.5vw] ">
       {letters.map((letterArray, index) => (
         <LetterColumn 
           key={startIndex + index} 
@@ -83,8 +83,8 @@ const Hero = () => {
   );
 
   return (
-    <section className="w-fit hero-container h-[90vh] text-neutral-900" id='hero'>
-      <div className="flex items-end justify-end gap-[2vw] h-full px-[2vw]">
+    <section className="w-fit hero-container h-[90vh] max-md:h-[60vh] text-neutral-900" id='hero'>
+      <div className="flex max-md:flex-col items-end justify-end max-md:items-start max-md:justify-end gap-[2vw]  h-full px-[2vw]">
         <div className="w-[63%] pb-[2vw]">
           <div>
             {/* First row: "A collection" */}
@@ -98,13 +98,13 @@ const Hero = () => {
           </div>
         </div>
         
-        <div className="w-[37%] flex flex-col gap-[1vw] px-[2vw] py-[3vw]">
-          <div className="h-[50%] py-[1vw]">
-            <p className="text-[1.6vw] leading-[1.3] text-black">
+        <div className="w-[37%] max-md:w-full flex flex-col gap-[1vw] max-md:gap-[3.5vw] px-[2vw] py-[3vw]">
+          <div className="h-[50%] max-md:w-full py-[1vw]">
+            <p className="text-[1.6vw] max-md:font-display max-md:text-[5vw] leading-[1.3] text-black">
               Enhance your GSAP skills with a range of 50 unique and well-crafted effects.
             </p>
           </div>
-          <div className="h-[50%]">
+          <div className="h-[50%] max-md:h-full">
             <Button title='explore collection' isArrow={true} isBorder={true} />
           </div>
         </div>

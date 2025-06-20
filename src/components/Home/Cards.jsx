@@ -50,7 +50,7 @@ const Cards = () => {
         pin: true,
          start: '50% top',
         end: '+1500 bottom',
-        markers: true
+        markers: false
       }
           })
           gsap.fromTo(
@@ -146,7 +146,26 @@ const Cards = () => {
         scrub: true
         // opacity: 0,
         // duration:1,
-    })
+    });
+
+    ScrollTrigger.create({
+      trigger: "#cards",
+      start: "top 50%",
+      end: "bottom 50%",
+      onEnter: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.add('text-white'));
+      },
+      onLeave: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.remove('text-white'));
+      },
+      onEnterBack: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.add('text-white'));
+      },
+      onLeaveBack: () => {
+        document.querySelectorAll('.nav-links').forEach(el => el.classList.remove('text-white'));
+      },
+    });
+
     
      return () => ctx.revert();
 
