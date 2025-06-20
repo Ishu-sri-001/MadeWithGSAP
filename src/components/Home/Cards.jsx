@@ -43,6 +43,16 @@ const Cards = () => {
           });
           const chars = splitText.chars;
           const shuffled = gsap.utils.shuffle([...chars]);
+          gsap.to(".cards-container",{
+            scrollTrigger: {
+        trigger: ".cards-container",
+        scrub: true,
+        pin: true,
+         start: '50% top',
+        end: '+1500 bottom',
+        markers: true
+      }
+          })
           gsap.fromTo(
         shuffled,
         {
@@ -51,7 +61,7 @@ const Cards = () => {
         {
           y: 0,
           opacity: 1,
-          ease: 'power3.out',
+          ease: 'sine.out(1.1)',
           stagger: {
             each: 0.03,
             from: 'random',
@@ -60,7 +70,7 @@ const Cards = () => {
             trigger: '.card-text-container',
             scrub: true,
             start: '20% 80%',
-            end: 'center center',
+            end: '50% 50%',
             markers: false, 
           },
         },
@@ -69,9 +79,9 @@ const Cards = () => {
       // console.log(blocks);
       const timeline = gsap.timeline({
       scrollTrigger: {
-        trigger: ".cards-container",
+        trigger: ".cards-animated-blocks",
         scrub: true,
-        start: "top bottom",
+        start: "10% bottom",
         end: "30% 80%",
         markers: false,
       },
@@ -90,7 +100,7 @@ const Cards = () => {
         targets,
         {
           yPercent: 100,
-          ease: "elastic.out(1, 1)",
+          ease: "sine.out",
           duration: 1,
         },
         i  
@@ -98,51 +108,53 @@ const Cards = () => {
     }
   });
   const tl = gsap.timeline({
+    delay:0.5,
     scrollTrigger: {
         trigger: ".cards-animated-container",
         scrub: true,
-        pin: true,
-        start: "50% 70%",
-        end: "bottom -50%",
+        
+         start: '30% 70%',
+        end: 'bottom top',
         markers: false
       }
   });
     tl.fromTo(".cards-animation", {
-      yPercent: 30,  
+      yPercent: 150,  
       scrub:true,
-        // opacity:1,
-      stagger:0.5,
-      //duration: 10,
-      //ease: "elastic.in(1.2,0.1)",   
+      
+      
+    
+      ease: "sine.out",   
     }, {
       yPercent:0,
-      rotation: () => gsap.utils.random(-30, 30),
+      rotation: () => gsap.utils.random(-15, 15),
+      stagger:0.7,
       scrub:true,
+      duration:3,
     })
     .to (".cards-animation", {
-         yPercent: 10,
-         
-        stagger:0.5,  
+        yPercent: 30,
+        stagger:0.7,  
         scrub:true,
-        duration: 2
+        duration: 3
     })
     .to (".cards-animation", {
-         yPercent: -90,
+         yPercent: -180,
         rotate: 0,
-        stagger: 0.5,
+        stagger: 0.8,
         duration: 5,
         scrub: true
         // opacity: 0,
         // duration:1,
-        
     })
+    
      return () => ctx.revert();
 
 }, []);
 
   return (
-    <section className="dark-bg text-white h-full w-full cards-container" id="cards">
-      <div className="relative h-screen w-full">
+    <section className="dark-bg text-white h-fit w-full cards-container" id="cards">
+      <div className="relative h-screen dark-bg pb-[20vh] w-full">
         <div className="w-full h-full flex items-center justify-center card-text-container">
           <h2 className="text-[7vw] font-display text-center leading-[1] cards-animated-txt">
             <span className="block w-full overflow-hidden">
@@ -179,12 +191,11 @@ const Cards = () => {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-[1.3vw] justify-center items-center px-[10vw] pb-[10vw] cards-animated-container ">
+      <div className="flex w-fit h-screen  gap-[1.3vw] justify-center items-center px-[10vw] cards-animated-container moving-container dark-bg ">
         {cardData.map((card, index) => (
-          
           <div
             key={index}
-            className={`bg-[#0d0d0d] text-white border border-neutral-800 rounded-[0.7vw] py-[1.3vw] pb-[2.5vw] px-[1.7vw] w-full  min-h-[67vh] cursor-pointer flex flex-col gap-[6vw] h-full cards-animation  `}
+            className={`bg-[#0d0d0d] text-white border border-neutral-800 rounded-[0.7vw] py-[1.5vw] pb-[2.5vw] px-[1.7vw] w-full   cursor-pointer flex flex-col gap-[3vw] h-fit cards-animation  `}
           >
             <div className="h-[40%] w-fit py-[2vw]">
               <Image

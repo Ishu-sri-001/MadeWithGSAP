@@ -10,6 +10,7 @@ gsap.registerPlugin(SplitText);
 const Button = (props) => {
   const textRef = useRef(null);
   const splitRef = useRef(null);
+  const buttonRef = useRef(null);
 
   useEffect(() => {
     if (textRef.current) {
@@ -46,10 +47,29 @@ const Button = (props) => {
     }
   };
 
+  const handleMouseEnter = () => {
+    handleHover();
+    gsap.to(buttonRef.current, {
+      scale: 0.95,
+      duration: 0.2,
+      ease: 'power2.out',
+    });
+  };
+
+  const handleMouseLeave = () => {
+    gsap.to(buttonRef.current, {
+      scale: 1,
+      duration: 0.2,
+      ease: 'power2.out',
+    });
+  };
+
   return (
     <button
+      ref={buttonRef}
       className={`h-[3.2vw] flex items-center justify-between w-fit my-auto px-[1vw] gap-[0.5vw] cursor-pointer ${props.isBorder ? 'border border-black' : ''} ${props.bg}`}
-      onMouseEnter={handleHover}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {props.isArrow && (
         <div className='w-[1vw] h-[1.7vw]'>

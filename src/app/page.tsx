@@ -10,12 +10,14 @@ import LineBreak from "@/components/Home/LineBreak"
 import Ready from "@/components/Home/Ready"
 import Footer from "@/components/Home/Footer"
 
+
 export default function Home() {
   return (
     <>
       <Header />
       <Hero />
       <About />
+      {/* <Learn /> */}
       <Cards />
       <TextBreak />
       <Clients />

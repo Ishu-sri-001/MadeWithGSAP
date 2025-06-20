@@ -60,10 +60,10 @@ const Ready = () => {
           xPercent: -33,
           repeat: -1,
           ease: "none"
-        }),
+        })
         gsap.to(".text-bottom", {
-          duration: 8,
-          xPercent: -50,
+          duration: 4,
+          xPercent: 25,
           repeat: -1,
           ease: "none"
         })
@@ -130,13 +130,13 @@ const Ready = () => {
          
           </div>
 
-          <div className="flex text-bottom text-scroll flex-nowrap w-fit">
+          <div className="flex text-bottom text-scroll flex-nowrap w-fit translate-x-[-62%]">
 
 
             {[...Array(4)].map((_, i) => (
           <div className="flex " key={`block-duplicate-${i}`}>
 
-           <h2 className="text-[6.5vw] text-nowrap font-display px-[1vw] text-center leading-[1]">
+           <h2 className="text-[6.5vw] text-nowrap font-display px-[1vw] text-center leading-[1] ">
             Get ready to animate
           </h2>
 
