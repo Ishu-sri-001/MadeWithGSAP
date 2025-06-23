@@ -21,7 +21,8 @@ export default function Home() {
   return (
     <>
       {/* <Header /> */}
-      {!isMobile ? <Header/> : <MobileHeader/>}
+      <Header/>
+      <MobileHeader/>
       <Hero />
       <About />
        

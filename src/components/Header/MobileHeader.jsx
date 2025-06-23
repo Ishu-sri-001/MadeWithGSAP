@@ -1,9 +1,12 @@
+'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image'
 import Link from 'next/link';
 import { gsap } from 'gsap';
+import UseMobile from '../Home/UseMobile';
 
 const MobileHeader = () => {
+    const isMobile = UseMobile();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
 
@@ -50,6 +53,11 @@ const MobileHeader = () => {
             });
         }
     };
+
+    if(!isMobile)
+    {   
+        return null;
+    }
 
     return (
         <div className=''>

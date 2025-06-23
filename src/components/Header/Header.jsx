@@ -1,9 +1,13 @@
+'use client';
 import React from 'react';
 import Image from 'next/image'
 import Link from 'next/link';
 import Button from "@/components/Buttons/index"
+import UseMobile from '../Home/UseMobile';
 
 const Header = () => {
+
+  const isMobile = UseMobile();
 
     const navItems=[
         {
@@ -22,6 +26,11 @@ const Header = () => {
             link: '/faq'
         },
     ];
+
+    if(isMobile)
+    {
+      return null;
+    }
 
   return (
    
