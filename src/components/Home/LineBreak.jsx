@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect } from 'react';
+import UseMobile from '@/components/Home/UseMobile'
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import SplitText from 'gsap/dist/SplitText';
@@ -7,12 +8,18 @@ import SplitText from 'gsap/dist/SplitText';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const LineBreak = () => {
+
+   const isMobile = UseMobile();
   useEffect(() => {
     const ctx = gsap.context(() => {
       const split = new SplitText('.linebreak-txt', {
         type: 'chars',
         opacity:1
       });
+      if (!isMobile)
+      {
+
+      
 
       gsap.to("linebreak-container", {
         scrollTrigger: {
@@ -59,6 +66,7 @@ const LineBreak = () => {
         stagger: 0.1,
         ease: 'elastic(1,0.8)',
       });
+    }
      
     });
 
@@ -66,11 +74,17 @@ const LineBreak = () => {
   }, []);
 
   return (
-    <div className='bg-white text-neutral-900 h-screen w-full flex items-center justify-center py-[3vw] linebreak-container overflow-hidden'>
-      <div className=' h-fit w-fit line-animation translate-x-[100%] '>
+    <div className='bg-white text-neutral-900 h-screen max-md:h-fit max-md:py-[15vw] w-full flex items-center justify-center py-[3vw] linebreak-container overflow-hidden'>
+      <div className=' h-fit w-fit line-animation translate-x-[100%] max-md:translate-x-0'>
 
-      <h2 className='text-[18vw]   font-medium text-center font-display leading-[0.8] text-nowrap px-[2vw] linebreak-txt '>
-        So, ready to animate ?
+      <h2 className='text-[18vw]   font-medium text-center font-display leading-[0.8] text-nowrap  px-[2vw] max-md:px-0 linebreak-txt max-md:text-wrap max-md:text-left'>
+       <span className='inline-block max-md:block'>
+        So, 
+        </span>
+        <span className='inline-block max-md:block'>
+
+        ready to animate ?
+        </span>
       </h2>
       </div>
     </div>

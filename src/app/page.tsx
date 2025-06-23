@@ -13,17 +13,18 @@ import Ready from "@/components/Home/Ready";
 import Footer from "@/components/Home/Footer";
 import UseMobile from '@/components/Home/UseMobile'
 import ClientsMobile from "@/components/Home/ClientsMobile"
+import MobileHeader from "@/components/Header/MobileHeader"
 import ReadyMobile from "@/components/Home/ReadyMobile"
 
 export default function Home() {
   const isMobile = UseMobile();
   return (
     <>
-      <Header />
+      {/* <Header /> */}
+      {!isMobile ? <Header/> : <MobileHeader/>}
       <Hero />
       <About />
-{/* <Cards/> */}
-{/* <CardsMobile/> */}
+       
       {!isMobile ? <Cards/> : <CardsMobile/>}
       <TextBreak />
       {!isMobile ? <Clients/> : <ClientsMobile/>}
