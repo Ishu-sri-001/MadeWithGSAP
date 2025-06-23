@@ -52,7 +52,7 @@ const Ready = () => {
             scrub: true,
             start: "top 60%",
             end: "bottom 40%",
-            markers: true
+            markers: false
           }
         }),
         gsap.to(".text-top", {
@@ -91,7 +91,7 @@ const Ready = () => {
   }, []);
 
   return (
-    <section className="dark-bg text-white h-full w-full ready-block-container pb-[60vh]" id='ready'>
+    <section className="dark-bg text-white h-full w-full ready-block-container pb-[8vh]" id='readyMobile'>
       <div className="relative h-fit w-full">
                 <div className="w-full h-full flex flex-col items-center py-[9vw] gap-[2vw] pt-[40vw]">
             <p className='text-[3.5vw] pb-[3vw]'>EAGER TO LEARN GSAP ?</p>
