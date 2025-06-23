@@ -18,8 +18,8 @@ const Ready = () => {
       scrollTrigger: {
         trigger: ".ready-block-container",
         scrub: true,
-        start: "10% 50%",
-        end: "top top",
+        start: "top 50%",
+        end: "30% 40%",
         markers: false,
       },
     });
@@ -50,8 +50,8 @@ const Ready = () => {
           scrollTrigger: {
             trigger: ".ready-text-container",
             scrub: true,
-            start: "top 60%",
-            end: "bottom 40%",
+            start: "bottom 50%",
+            end: "20% 20%",
             markers: false
           }
         }),
@@ -95,7 +95,7 @@ const Ready = () => {
       <div className="relative h-fit w-full">
                 <div className="w-full h-full flex flex-col items-center py-[9vw] gap-[2vw] pt-[40vw]">
             <p className='text-[3.5vw] pb-[3vw]'>EAGER TO LEARN GSAP ?</p>
-            <div className='flex flex-col items-start justify-start   h-[10vh] w-[98vw] overflow-hidden py-[3.5vw] ready-text-container '>
+            <div className='flex flex-col items-start justify-start   h-[3vh] w-[98vw] overflow-hidden py-[3.5vw] ready-text-container '>
 
           <div className="text-top text-scroll  flex flex-nowrap  w-fit">
           <div className="h-fit flex ">

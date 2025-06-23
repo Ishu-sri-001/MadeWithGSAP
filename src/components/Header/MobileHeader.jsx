@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image'
 import Link from 'next/link';
-import Button from "@/components/Buttons/index"
+import { gsap } from 'gsap';
 
 const MobileHeader = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = useRef(null);
 
     const navItems = [
         {
@@ -26,7 +27,28 @@ const MobileHeader = () => {
     ];
 
     const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
+        if (!isMenuOpen) {
+            setIsMenuOpen(true);
+            
+            gsap.fromTo(menuRef.current, { 
+                yPercent: -100,
+                duration: 1, 
+                ease: 'power2.out' 
+            }, { 
+                yPercent: 0, 
+                duration: 1, 
+                ease: 'power2.out' 
+            }
+            );
+        } else {
+            
+            gsap.to(menuRef.current, {
+                yPercent: -100,
+                duration: 0.5,
+                ease: 'power2.in',
+                onComplete: () => setIsMenuOpen(false)
+            });
+        }
     };
 
     return (
@@ -85,7 +107,10 @@ const MobileHeader = () => {
 
           
             {isMenuOpen && (
-                <div className='fixed top-0 left-0 w-full h-[50vh] z-40 bg-white backdrop-blur-sm pt-[12vh]'>
+                <div 
+                    ref={menuRef}
+                    className='fixed top-0 left-0 w-full h-[50vh] z-40 bg-white backdrop-blur-sm pt-[12vh]'
+                >
                     <div className='px-[4vw] py-[1vh] space-y-[3vh]'>
                         {navItems.map((item) => (
                             <div key={item.id} className=''>
