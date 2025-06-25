@@ -110,7 +110,7 @@ const tl1 = gsap.timeline();
   );
 
   return (
-    <section className="w-fit hero-container h-[50vh] max-md:h-[60vh] max-sm:h-[50vh] text-neutral-900" id='hero'>
+    <section className="w-fit hero-container h-[90vh] max-md:h-[60vh] max-sm:h-[50vh] text-neutral-900" id='hero'>
       <div className="flex max-md:flex-col items-end justify-end max-md:items-start max-md:justify-end gap-[2vw] max-md:gap-0 max-sm:pt-0 max-md:pt-[20vw] h-full px-[2vw]">
         <div className="w-[63%] pb-[2vw]">
           <div>
