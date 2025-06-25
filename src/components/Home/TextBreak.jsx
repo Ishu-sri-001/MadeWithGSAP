@@ -140,7 +140,7 @@ const Textreak = () => {
   );
 
   return (
-    <section id='text-break' className=' text-white h-fit dark-bg w-full flex items-center justify-center  pb-[20vw] textbreak-container'>
+    <section id='text-break' className=' text-white h-fit dark-bg w-full flex items-center justify-center  pb-[20vw] textbreak-container margin-[-40%]'>
       <div className='w-full  flex flex-col items-center justify-center h-fit text-center'>
         {/* First row: "Learn it" */}
         <TextRow letters={row1Letters} isFirstRow={true} startIndex={0} />

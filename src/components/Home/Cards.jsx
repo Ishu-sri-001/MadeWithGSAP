@@ -42,7 +42,8 @@ const Cards = () => {
           });
           const chars = splitText.chars;
           const shuffled = gsap.utils.shuffle([...chars]);
-          gsap.to(".cards-container",{
+          if(globalThis.innerWidth>1024){
+        gsap.to(".cards-container",{
             scrollTrigger: {
         trigger: ".cards-container",
         scrub: true,
@@ -74,6 +75,44 @@ const Cards = () => {
           },
         },
       );
+        }
+        else {
+            gsap.to(".cards-container",{
+            scrollTrigger: {
+        trigger: ".cards-container",
+        scrub: true,
+        pin: true,
+         start: '50% 20%',
+        end: 'bottom top',
+        markers: false
+      }
+          })
+        
+          gsap.fromTo(
+        shuffled,
+        {
+          y: 100,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          ease: 'sine.out(1.1)',
+          stagger: {
+            each: 0.03,
+            from: 'random',
+          },
+          scrollTrigger: {
+            trigger: '.card-text-container',
+            scrub: true,
+            start: '20% 80%',
+            end: '50% 50%',
+            markers: false, 
+          },
+        },
+      );
+    }
+
+    
       const blocks = document.querySelectorAll(".cards-animated-blocks");
       // console.log(blocks);
       const timeline = gsap.timeline({
@@ -106,8 +145,10 @@ const Cards = () => {
       );
     }
   });
+
+  if(globalThis.innerWidth>1024){
   const tl = gsap.timeline({
-    delay:0.5,
+    delay:-2,
     scrollTrigger: {
         trigger: ".cards-animated-container",
         scrub: true,
@@ -146,6 +187,64 @@ const Cards = () => {
         // opacity: 0,
         // duration:1,
     });
+  }
+  else {
+    const tl = gsap.timeline({
+    delay:0,
+    scrollTrigger: {
+        trigger: ".cards-animated-container",
+        scrub: true,
+        
+         start: 'top 90%',
+        end: 'bottom 50%',
+        markers: false
+      }
+  });
+    tl.fromTo(".cards-animation", {
+      yPercent: 150,  
+      scrub:false,
+      
+      
+    
+      ease: "sine.out",   
+    }, {
+      yPercent:-80,
+      rotation: () => gsap.utils.random(-15, 15),
+      stagger:1,
+      scrub:true,
+      duration:3,
+    })
+    .to (".cards-animation", {
+        yPercent: -30,
+        stagger:1.5,  
+        scrub:true,
+        duration: 3
+    })
+    .to (".cards-animation", {
+         yPercent: -250,
+        rotate: 0,
+        stagger: 2,
+        duration: 5,
+        scrub: true
+        // opacity: 0,
+        // duration:1,
+    });
+  }
+
+  //  gsap.to(".header-logo",{
+  //   filter:"brightness(20)",
+  //   scrollTrigger:{
+  //     trigger:"#cards",
+  //     start:"top top",
+  //     end:"bottom top",
+  //     markers:true,
+  //     onEnter:()=>{
+  //       gsap.to(".header-logo",{
+  //         filter:"brightness(20)",
+  //       })
+  //     }
+  //   }
+  //  })
 
     ScrollTrigger.create({
       trigger: "#cards",
@@ -174,10 +273,10 @@ const Cards = () => {
   return (
 
     
-    <section className="dark-bg text-white h-fit w-full cards-container" id="cards">
-      <div className="relative h-screen dark-bg pb-[20vh] w-full">
+    <section className="dark-bg text-white h-fit max-md:h-full w-full cards-container" id="cards">
+      <div className="relative h-screen max-md:h-fit dark-bg pb-[20vh] w-full">
         <div className="w-full h-full flex items-center justify-center card-text-container">
-          <h2 className="text-[7vw] font-display text-center leading-[1] cards-animated-txt">
+          <h2 className="text-[7vw] font-display text-center leading-[1] cards-animated-txt pt-[15vw]">
             <span className="block w-full overflow-hidden">
 
             Learn how to use{" "}
@@ -187,7 +286,7 @@ const Cards = () => {
         </div>
 
         
-        <div className="absolute top-[-8%] left-0 right-[-20%] h-[22vh] w-full flex  ">
+        <div className="absolute top-[-8%] max-md:top-[-5%] left-0 right-[-20%] h-[22vh] max-md:h-[15vh] w-full flex  ">
           {Array.from({ length: 13 }).map((_, index, arr) => {
             const isFirst = index === 0;
             const isLast = index === arr.length - 1;
@@ -212,13 +311,13 @@ const Cards = () => {
         </div>
       </div>
 
-      <div className="flex w-fit h-screen  gap-[1.3vw] justify-center items-center px-[10vw] cards-animated-container moving-container dark-bg ">
+      <div className="flex w-fit h-screen max-md:h-fit max-md:pb-[40vw] gap-[1.3vw] max-md:gap-0 justify-center items-center  px-[10vw] max-md:px-[2vw] cards-animated-container moving-container dark-bg max-md:pt-[50vw]">
         {cardData.map((card, index) => (
           <div
             key={index}
-            className={`bg-[#0d0d0d] text-white border border-neutral-800 rounded-[0.7vw] py-[1.5vw] pb-[2.5vw] px-[1.7vw] w-full   cursor-pointer flex flex-col gap-[3vw] h-fit cards-animation  `}
+            className={`bg-[#0d0d0d] text-white border border-neutral-800 rounded-[0.7vw] py-[1.5vw] pb-[2.5vw] px-[1.7vw] w-full   max-md:min-w-[23vw] cursor-pointer flex flex-col gap-[3vw]  h-fit cards-animation max-md:gap-[10vw] `}
           >
-            <div className="h-[40%] w-fit py-[2vw]">
+            <div className="h-[40%] max-md:h-[10vw] w-fit py-[2vw]">
               <Image
                 src={card.icon}
                 alt={card.title}

@@ -94,8 +94,8 @@ const Ready = () => {
     <section className="dark-bg text-white h-full w-full ready-block-container pb-[8vh]" id='readyMobile'>
       <div className="relative h-fit w-full">
                 <div className="w-full h-full flex flex-col items-center py-[9vw] gap-[2vw] pt-[40vw]">
-            <p className='text-[3.5vw] pb-[3vw]'>EAGER TO LEARN GSAP ?</p>
-            <div className='flex flex-col items-start justify-start   h-[3vh] w-[98vw] overflow-hidden py-[3.5vw] ready-text-container '>
+            <p className='text-[3.5vw] pb-[8vw]'>EAGER TO LEARN GSAP ?</p>
+            <div className='flex flex-col items-start justify-start   h-[3vh] w-[98vw] overflow-hidden py-[3.5vw] ready-text-container pb-[10vw]'>
 
           <div className="text-top text-scroll  flex flex-nowrap  w-fit">
           <div className="h-fit flex ">

@@ -8,6 +8,7 @@ import SplitText from 'gsap/dist/SplitText';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const LineBreak = () => {
+  
 
    const isMobile = UseMobile();
   useEffect(() => {
@@ -16,7 +17,7 @@ const LineBreak = () => {
         type: 'chars',
         opacity:1
       });
-      if (!isMobile)
+      if(globalThis.innerWidth>1024)
       {
 
       
@@ -74,7 +75,7 @@ const LineBreak = () => {
   }, []);
 
   return (
-    <div className='bg-white text-neutral-900 h-screen max-md:h-fit max-md:py-[15vw] w-full flex items-center justify-center py-[3vw] linebreak-container overflow-hidden'>
+    <div className='bg-white text-neutral-900 h-screen max-md:h-fit max-md:py-[15vw] w-full flex items-center justify-center py-[3vw] linebreak-container overflow-hidden' id='linebreak'>
       <div className=' h-fit w-fit line-animation translate-x-[100%] max-md:translate-x-0'>
 
       <h2 className='text-[18vw]   font-medium text-center font-display leading-[0.8] text-nowrap  px-[2vw] max-md:px-0 linebreak-txt max-md:text-wrap max-md:text-left'>

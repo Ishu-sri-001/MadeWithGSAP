@@ -10,7 +10,7 @@
   --color-foreground: var(--foreground);
   --font-body:var(--font-body);
   --font-display:var(--font-display);
-   --breakpoint-sm: 640px;
+  --breakpoint-sm: 640px;
   --breakpoint-md: 1024px;
 
 }

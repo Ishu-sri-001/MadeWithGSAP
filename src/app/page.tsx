@@ -18,6 +18,7 @@ import ReadyMobile from "@/components/Home/ReadyMobile"
 
 export default function Home() {
   const isMobile = UseMobile();
+  
   return (
     <>
       {/* <Header /> */}

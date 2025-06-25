@@ -71,8 +71,8 @@ const CardsMobile = () => {
       scrollTrigger: {
         trigger: ".cards-animated-blocks",
         scrub: true,
-        start: "10% bottom",
-        end: "30% 80%",
+        start: "10% 80%",
+        end: "30% 30%",
         markers: false,
       },
     });
@@ -128,7 +128,7 @@ const CardsMobile = () => {
             return (
               <div
                 key={index}
-                className={`dark-bg cards-animated-blocks h-[80%] origin-bottom w-[20vw] rounded-full`}
+                className={`dark-bg cards-animated-blocks h-[50%] origin-bottom w-[20vw] rounded-full`}
               >
                 <div className="h-full" />
               </div>

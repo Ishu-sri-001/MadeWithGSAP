@@ -9,11 +9,16 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const Ready = () => {
+
+ 
   
   useEffect( () => {
+     const isLaptop = globalThis.innerWidth > 1024;
     const ctx=gsap.context(()  => {
         const blocks = document.querySelectorAll(".ready-animated-blocks");
       // console.log(blocks);
+      if(isLaptop)
+      {
       const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: ".ready-block-container",
@@ -42,8 +47,7 @@ const Ready = () => {
         i  
       );
     }
-
-        gsap.fromTo(".text-scroll", {
+    gsap.fromTo(".text-scroll", {
           yPercent: -50,
         } , {
           yPercent: -150,
@@ -67,6 +71,65 @@ const Ready = () => {
           repeat: -1,
           ease: "none"
         })
+  }
+    else {
+        const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".ready-block-container",
+        scrub: true,
+        start: "10% 50%",
+        end: "80% top",
+        markers: false,
+      },
+    });
+    const len = blocks.length;
+    const mid = Math.floor(len / 2);
+
+    for (let i = 0; i <= mid; i++) {
+      const left = blocks[i];
+      const right = blocks[len - 1 - i];
+
+      const targets = left === right ? [left] : [left, right];
+
+      timeline.from(
+        targets,
+        {
+          yPercent: 47,
+          ease: "elastic.out(1, 1)",
+          duration: 1,
+        },
+        i  
+      );
+      gsap.fromTo(".text-scroll", {
+          yPercent: -50,
+        } , {
+          yPercent: -150,
+          scrollTrigger: {
+            trigger: ".ready-text-container",
+            scrub: true,
+            start: "top 20%",
+            end: "bottom top",
+            markers: false
+          }
+        }),
+        gsap.to(".text-top", {
+          duration: 8,
+          xPercent: -33,
+          repeat: -1,
+          ease: "none"
+        })
+        gsap.to(".text-bottom", {
+          duration: 4,
+          xPercent: 25,
+          repeat: -1,
+          ease: "none"
+        })
+    }
+    
+    }
+    
+
+        
     });
 
     ScrollTrigger.create({
@@ -92,10 +155,10 @@ const Ready = () => {
 
   return (
     <section className="dark-bg text-white h-full w-full ready-block-container" id='ready'>
-      <div className="relative h-screen w-full">
-                <div className="w-full h-full flex flex-col items-center py-[9vw] gap-[2vw]">
-            <p className='text-[0.9vw] pb-[3vw]'>EAGER TO LEARN GSAP ?</p>
-            <div className='flex flex-col items-start justify-start   h-[10vh] w-[98vw] overflow-hidden py-[3.5vw] ready-text-container '>
+      <div className="relative h-screen max-md:h-fit w-full">
+                <div className="w-full h-full flex flex-col items-center py-[9vw] max-md:py-[15vw] gap-[2vw]">
+            <p className='text-[0.9vw] max-md:text-[2vw] pb-[3vw]'>EAGER TO LEARN GSAP ?</p>
+            <div className='flex flex-col items-start justify-start  max-md:h-[5vh]  h-[10vh]  w-[98vw] overflow-hidden py-[3.5vw] ready-text-container '>
 
           <div className="text-top text-scroll  flex flex-nowrap  w-fit">
           <div className="h-fit flex ">
@@ -169,7 +232,7 @@ const Ready = () => {
           
         </div>
         <div className='dark-bg w-full flex justify-center py-[3vw] z-[0]'>
-        <div className='h-full  '>
+        <div className='h-full max-md:pt-[10vw]'>
 
                     <Button isArrow={false} title='Start learning now' bg='bg-white px-[3vw]' />
                     </div>
@@ -177,7 +240,7 @@ const Ready = () => {
             </div>
 
         
-        <div className="absolute top-[-8%] left-0 right-[-20%] h-[22vh] w-full flex ">
+        <div className="absolute top-[-8%] max-md:top-[-5.5%] left-0 right-[-20%] h-[22vh] max-md:h-[12vw] w-full  flex ">
           {Array.from({ length: 13 }).map((_, index, arr) => {
             const isFirst = index === 0;
             const isLast = index === arr.length - 1;

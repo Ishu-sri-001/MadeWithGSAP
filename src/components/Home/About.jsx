@@ -54,8 +54,8 @@ const About = () => {
 
 
   return (
-    <section id='about' className='pb-[30vh] max-md:pb-[10vh] px-[2vw]'>
-        <div className='scaled-video origin-left'>
+    <section id='about' className='pb-[30vh] max-md:pb-[10vh] px-[2vw] max-sm:px-0 max-md:pt-[2vw]'>
+        <div className='scaled-video origin-left '>
             <video
             autoPlay
             loop
@@ -67,16 +67,16 @@ const About = () => {
       </video>
 
         </div>
-        <div className='text-primary font-display pt-[10vw] max-md:pt-[6vw]'>
-            <div className='w-full h-full flex flex-col justify-end items-end max-md:justify-start max-md:items-start'>
+        <div className='text-primary font-display pt-[10vw] max-sm:pt-[6vw] max-sm:mx-[2vw]'>
+            <div className='w-full h-full flex flex-col justify-end items-end max-sm:justify-start max-sm:items-start '>
 
-            <p className='text-[1.5vw] max-md:text-[4.5vw] w-[67%]  pb-[8vw] '>Improve your animation skills</p>
-            <p className='text-[4.5vw] max-md:text-[7vw] w-[67%] max-md:w-full leading-[1] about-text about-hit-point'>
+            <p className='text-[1.5vw] max-md:text-[2vw] w-[67%] max-sm:text-[4vw] pb-[8vw] max-md:pb-[7vw]'>Improve your animation skills</p>
+            <p className='text-[4.5vw] max-sm:text-[7vw] max-md:text-[4.9vw] w-[67%] max-sm:w-full leading-[1] about-text about-hit-point max-md:inline-block'>
                 Motion on websites is a must-
             </p>
             </div>
-            <p className='text-[4.5vw] max-md:text-[7vw] leading-[1] about-text '>have these days. Developers are constantly crafting new animations that push the boundaries of creativity. If you're ready to explore the power of GSAP, we’ve got you covered with 50 unique effects designed to help you master it like a pro.</p>
-            <div className='w-full h-fit pt-[5vh] flex items-center justify-center'>
+            <p className='text-[4.5vw] max-sm:text-[7vw] max-md:text-[4.9vw]  leading-[1] about-text'>have these days. Developers are constantly crafting new animations that push the boundaries of creativity. If you're ready to explore the power of GSAP, we’ve got you covered with 50 unique effects designed to help you master it like a pro.</p>
+            <div className='w-full h-fit pt-[18vh] max-md:pt-[20vw] flex items-center justify-center'>
                 <LinkBtn />
             </div>
         </div>

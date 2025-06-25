@@ -67,12 +67,12 @@ const Button = (props) => {
   return (
     <button
       ref={buttonRef}
-      className={`h-[3.2vw] max-md:h-[10vw] flex items-center justify-between w-fit my-auto px-[1vw] max-md:px-[3vw] max-md:py-[1vw] gap-[0.5vw] cursor-pointer ${props.isBorder ? 'border border-black' : ''} ${props.bg}`}
+      className={`h-[3.2vw] max-md:h-[5vw] max-sm:h-[10vw] flex items-center justify-between w-fit my-auto px-[1vw] max-sm:px-[3vw] max-sm:py-[1vw] gap-[0.5vw] cursor-pointer ${props.isBorder ? 'border border-black' : ''} ${props.bg}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {props.isArrow && (
-        <div className='w-[1vw] h-[1.7vw] max-md:h-[3.5vw] max-md:w-[3.5vw] '>
+        <div className='w-[1vw] h-[1.7vw] max-sm:h-[3.5vw] max-sm:w-[3.5vw] max-md:'>
           <Image
             src='/assets/icons/enter.svg'
             width={900}
@@ -84,7 +84,7 @@ const Button = (props) => {
       )}
 
       <p
-        className='h-fit font-body w-fit my-auto text-black uppercase text-[1vw] max-md:text-[3.5vw] max-md:pl-[2vw]'
+        className='h-fit font-body w-fit my-auto text-black uppercase text-[1vw] max-sm:text-[3.5vw] max-md:text-[2vw] max-md:pl-[2vw]'
         ref={textRef}
       >
         {props.title}
